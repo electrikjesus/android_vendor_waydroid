@@ -1,0 +1,22 @@
+From 5a80cc72591cc2601964ff30f18b849b25ca00a7 Mon Sep 17 00:00:00 2001
+From: Jon West <electrikjesus@gmail.com>
+Date: Tue, 7 Sep 2021 17:14:03 +0000
+Subject: [PATCH] Remove conflicts from microg patches
+
+---
+ core/res/res/values/cm_strings.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/res/res/values/cm_strings.xml b/core/res/res/values/cm_strings.xml
+index 972ed01636d..5ca62c03582 100644
+--- a/core/res/res/values/cm_strings.xml
++++ b/core/res/res/values/cm_strings.xml
+@@ -29,4 +29,4 @@
+     <!-- toast message informing user that Bluetooth stays on after airplane mode is turned on. [CHAR LIMIT=NONE] -->
+     <string name="bluetooth_airplane_mode_toast">Bluetooth will stay on during airplane mode</string>
+ 
+- </resources>
++</resources>
+-- 
+2.25.1
+

@@ -1,0 +1,50 @@
+From 9895dcf63ede00a45bb253ca8fe468aeffedc72c Mon Sep 17 00:00:00 2001
+From: Erfan Abdi <erfangplus@gmail.com>
+Date: Thu, 26 Aug 2021 13:52:27 +0800
+Subject: [PATCH 1/2] lineage: Add more build types
+
+Change-Id: I6cf73bdd7bcf7fde9687d3fd96fde8dcfd01841a
+---
+ config/common.mk | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/config/common.mk b/config/common.mk
+index b790d172..73057b5d 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -272,6 +272,11 @@ ifndef LINEAGE_BUILDTYPE
+     endif
+ endif
+ 
++ifeq ($(LINEAGE_BUILDTYPE), GAPPS)
++	WITH_GMS := true
++	WITH_GMS_MINIMAL := true
++endif
++
+ ifdef LINEAGE_BUILDTYPE
+     ifneq ($(LINEAGE_BUILDTYPE), SNAPSHOT)
+         ifdef LINEAGE_EXTRAVERSION
+@@ -283,10 +288,7 @@ ifdef LINEAGE_BUILDTYPE
+             LINEAGE_EXTRAVERSION := -$(LINEAGE_EXTRAVERSION)
+         endif
+     else
+-        ifndef LINEAGE_EXTRAVERSION
+-            # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
+-            LINEAGE_BUILDTYPE := EXPERIMENTAL
+-        else
++        ifdef LINEAGE_EXTRAVERSION
+             # Remove leading dash from LINEAGE_EXTRAVERSION
+             LINEAGE_EXTRAVERSION := $(shell echo $(LINEAGE_EXTRAVERSION) | sed 's/-//')
+             # Add leading dash to LINEAGE_EXTRAVERSION
+@@ -391,3 +393,8 @@ endif
+ 
+ # Include configuration for partners
+ $(call inherit-product-if-exists, vendor/partner/$(BUILD_PARTNER)/config/$(BUILD_PARTNER).mk)
++
++ifeq ($(LINEAGE_BUILDTYPE), FOSS)
++	$(call inherit-product-if-exists, vendor/foss/foss.mk)
++endif
++
+-- 
+2.25.1
+
