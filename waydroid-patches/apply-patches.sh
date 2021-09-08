@@ -18,6 +18,7 @@ top_dir=`pwd`
 LOCALDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 patch_dir="$LOCALDIR/base-patches"
 roms_patch_dir="$LOCALDIR/roms-patches"
+extra_patch_dir=""
 
 #setup colors
 red=`tput setaf 1`
@@ -143,11 +144,26 @@ if [ -f build/make/core/version_defaults.mk ]; then
     fi
 fi
 
+# Detect supported ROM and pair with extra-patches folder if needed
+if [ -f vendor/lineage/config/common.mk ]; then
+    if grep -q "# Required /e/ packages" vendor/lineage/config/common.mk; then
+        extra_patch_dir="$LOCALDIR/extra-patches/e-os"
+    fi
+fi
+
 #Apply common patches
 cd $patch_dir
 patch_list=`find * -iname "*.patch" | sort -u`
 
 apply_patch "$patch_list" "$patch_dir"
+
+# Apply extra patches if needed
+if [[ "$extra_patch_dir" != "" ]]; then
+cd $extra_patch_dir
+extra_patch_list=`find * -iname "*.patch" | sort -u`
+
+apply_patch "$extra_patch_list" "$extra_patch_dir"
+fi
 
 echo ""
 if [[ "$conflict" == "y" ]]; then
