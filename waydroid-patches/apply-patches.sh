@@ -151,6 +151,10 @@ if [ -f vendor/lineage/config/common.mk ]; then
     fi
 fi
 
+if [ -d vendor/bliss ]; then
+    extra_patch_dir="$LOCALDIR/extra-patches/bliss"
+fi
+
 #Apply common patches
 cd $patch_dir
 patch_list=`find * -iname "*.patch" | sort -u`
