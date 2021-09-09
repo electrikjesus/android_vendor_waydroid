@@ -1,0 +1,53 @@
+From d3322f29fb131a10e515d2e3d068950a07af71a0 Mon Sep 17 00:00:00 2001
+From: Erfan Abdi <erfangplus@gmail.com>
+Date: Wed, 8 Sep 2021 21:50:40 -0400
+Subject: [PATCH 1/2] bliss: Add more build types
+
+Change-Id: Ie419931c6a1ec48afddc4e7cb3d3f1998bd60ce6
+---
+ config/common.mk   | 4 ++++
+ config/versions.mk | 9 +++++++++
+ 2 files changed, 13 insertions(+)
+
+diff --git a/config/common.mk b/config/common.mk
+index 5554cb873..82645d6ea 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -216,3 +216,7 @@ include vendor/google-customization/config.mk
+ -include $(WORKSPACE)/build_env/image-auto-bits.mk
+ -include vendor/bliss/config/partner_gms.mk
+ -include packages/apps/Plugins/plugins.mk
++
++ifneq ($(filter FOSS,$(BLISS_BUILDTYPE) $(LINEAGE_BUILDTYPE)),)
++    $(call inherit-product-if-exists, vendor/foss/foss.mk)
++endif
+diff --git a/config/versions.mk b/config/versions.mk
+index 57d78c932..e097f7b54 100644
+--- a/config/versions.mk
++++ b/config/versions.mk
+@@ -15,6 +15,10 @@ BLISS_VERSION_STATIC = 10.0
+ 
+ TARGET_PRODUCT_SHORT := $(subst bliss_,,$(BLISS_BUILDTYPE))
+ 
++ifdef $(LINEAGE_BUILDTYPE)
++    BLISS_BUILDTYPE := $(LINEAGE_BUILDTYPE)
++endif
++
+ # Set BLISS_BUILDTYPE
+ ifdef BLISS_NIGHTLY
+     BLISS_BUILDTYPE := NIGHTLY
+@@ -31,6 +35,11 @@ else
+     BLISS_BUILDTYPE := UNOFFICIAL
+ endif
+ 
++ifeq ($(BLISS_BUILDTYPE), GAPPS)
++    WITH_GMS := true
++    WITH_GMS_MINIMAL := true
++endif
++
+ # Set BLISS version
+ ifdef BLISS_RELEASE
+     BLISS_VERSION := Bliss-v$(VERSION)
+-- 
+2.25.1
+
