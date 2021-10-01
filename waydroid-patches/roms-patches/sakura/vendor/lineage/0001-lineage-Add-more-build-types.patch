@@ -1,0 +1,31 @@
+From fa3ebd392e7dfff1e763efa3eda291a9cd053dd4 Mon Sep 17 00:00:00 2001
+From: Erfan Abdi <erfangplus@gmail.com>
+Date: Thu, 26 Aug 2021 13:52:27 +0800
+Subject: [PATCH 1/2] lineage: Add more build types
+
+Change-Id: I6cf73bdd7bcf7fde9687d3fd96fde8dcfd01841a
+---
+ config/common.mk | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/config/common.mk b/config/common.mk
+index 6665c30..44101eb 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -353,3 +353,13 @@ include vendor/lineage/themes/backgrounds/themes.mk
+ 
+ -include $(WORKSPACE)/build_env/image-auto-bits.mk
+ -include vendor/lineage/config/partner_gms.mk
++
++ifeq ($(LINEAGE_BUILDTYPE), GAPPS)
++    WITH_GMS := true
++    WITH_GMS_MINIMAL := true
++endif
++
++ifeq ($(LINEAGE_BUILDTYPE), FOSS)
++    $(call inherit-product-if-exists, vendor/foss/foss.mk)
++endif
++
+-- 
+2.25.1
+

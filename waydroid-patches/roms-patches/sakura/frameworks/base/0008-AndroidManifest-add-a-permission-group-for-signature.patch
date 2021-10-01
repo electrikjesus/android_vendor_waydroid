@@ -1,0 +1,53 @@
+From 68d3413e64720dd9d7868a7dab1c3f770d687022 Mon Sep 17 00:00:00 2001
+From: Vachounet <vachounet@live.fr>
+Date: Wed, 12 Feb 2020 11:34:33 +0100
+Subject: [PATCH 1/3] AndroidManifest: add a permission group for signature
+ spoofing
+
+Needed by PackageInstaller while checking for modern permission group
+
+Change-Id: Ibb402960dcde6d21106d1481ca7c3cd314fd2ac1
+---
+ core/res/AndroidManifest.xml       | 7 +++++++
+ core/res/res/values/cm_strings.xml | 8 ++++++++
+ 2 files changed, 15 insertions(+)
+
+diff --git a/core/res/AndroidManifest.xml b/core/res/AndroidManifest.xml
+index 3780cc7e..433e7318 100644
+--- a/core/res/AndroidManifest.xml
++++ b/core/res/AndroidManifest.xml
+@@ -2662,6 +2662,13 @@
+         android:description="@string/permdesc_getPackageSize"
+         android:protectionLevel="normal" />
+ 
++    <!-- @hide -->
++    <permission-group android:name="android.permission-group.FAKE_PACKAGE"
++        android:label="@string/permgrouplab_fake_package_signature"
++        android:description="@string/permgroupdesc_fake_package_signature"
++        android:request="@string/permgrouprequest_fake_package_signature"
++        android:priority="100" />
++    
+     <!-- @hide Allows an application to change the package signature as
+          seen by applications -->
+     <permission android:name="android.permission.FAKE_PACKAGE_SIGNATURE"
+diff --git a/core/res/res/values/cm_strings.xml b/core/res/res/values/cm_strings.xml
+index 972ed016..b8de51ad 100644
+--- a/core/res/res/values/cm_strings.xml
++++ b/core/res/res/values/cm_strings.xml
+@@ -28,5 +28,13 @@
+     <!-- Strings for Bluetooth service -->
+     <!-- toast message informing user that Bluetooth stays on after airplane mode is turned on. [CHAR LIMIT=NONE] -->
+     <string name="bluetooth_airplane_mode_toast">Bluetooth will stay on during airplane mode</string>
++    
++    <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
++    <string name="permgrouplab_fake_package_signature">Spoof package signature</string>
++    <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
++    <string name="permgroupdesc_fake_package_signature">allow to spoof package signature</string>
++    <!-- Message shown to the user when the apps requests permission from this group. If ever possible this should stay below 80 characters (assuming the parameters takes 20 characters). Don't abbreviate until the message reaches 120 characters though. [CHAR LIMIT=120] -->
++    <string name="permgrouprequest_fake_package_signature">Allow
++        &lt;b><xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b> to spoof package signature?</string>
+ 
+  </resources>
+-- 
+2.25.1
+
