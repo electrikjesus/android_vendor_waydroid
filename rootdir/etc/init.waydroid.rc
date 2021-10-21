@@ -41,3 +41,16 @@ service vendor.camera-provider-2-4 /vendor/bin/hw/android.hardware.camera.provid
     capabilities SYS_NICE
     oneshot
     writepid /dev/cpuset/camera-daemon/tasks /dev/stune/top-app/tasks
+
+service nativebridge /system/bin/enable_nativebridge
+    class main
+    disabled
+    oneshot
+    seclabel u:r:zygote:s0
+
+on property:persist.sys.nativebridge=1
+    start nativebridge
+
+on property:persist.sys.nativebridge=0
+    stop nativebridge
+    

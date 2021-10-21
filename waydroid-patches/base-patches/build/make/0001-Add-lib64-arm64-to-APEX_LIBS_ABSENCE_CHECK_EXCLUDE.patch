@@ -1,0 +1,26 @@
+From 775f4fe0d9093594de3b5f37f3abbde41f57c63b Mon Sep 17 00:00:00 2001
+From: Jon West <electrikjesus@gmail.com>
+Date: Thu, 21 Oct 2021 15:00:27 -0400
+Subject: [PATCH] Add lib64/arm64 to APEX_LIBS_ABSENCE_CHECK_EXCLUDE
+
+Change-Id: I3e6abedbc6a67075bea9f92f57e1ca4bab8b9ed7
+---
+ core/main.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/main.mk b/core/main.mk
+index e8a1c4f8a..98e221f72 100644
+--- a/core/main.mk
++++ b/core/main.mk
+@@ -1225,7 +1225,7 @@ APEX_LIBS_ABSENCE_CHECK_EXCLUDE := lib/bootstrap lib64/bootstrap
+ # native architecture.
+ # TODO(b/130630776): Introduce a make variable for the appropriate directory
+ # when native bridge is active.
+-APEX_LIBS_ABSENCE_CHECK_EXCLUDE += lib/arm lib/arm64
++APEX_LIBS_ABSENCE_CHECK_EXCLUDE += lib/arm lib/arm64 lib64/arm64
+ 
+ # Exclude vndk-* subdirectories which contain prebuilts from older releases.
+ APEX_LIBS_ABSENCE_CHECK_EXCLUDE += lib/vndk-% lib64/vndk-%
+-- 
+2.25.1
+
