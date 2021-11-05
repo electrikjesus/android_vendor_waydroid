@@ -1,7 +1,7 @@
 From b3e9dee68597e4e80b92388523e034fbdd55056e Mon Sep 17 00:00:00 2001
 From: Madhushan Nishantha <jlmadushan@gmail.com>
 Date: Mon, 18 Oct 2021 17:40:30 +0200
-Subject: [PATCH] include *.bp
+Subject: [PATCH 1/2] include *.bp
 
 Change-Id: Iad43b83193f6bc43fd186420eaecfe054783a543
 ---

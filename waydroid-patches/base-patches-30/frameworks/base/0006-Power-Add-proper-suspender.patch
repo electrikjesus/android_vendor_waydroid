@@ -1,7 +1,7 @@
 From eace61059291dcf0a4b523fbcb09cee69156b053 Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Sun, 12 Sep 2021 11:55:30 +0800
-Subject: [PATCH 6/6] Power: Add proper suspender
+Subject: [PATCH 06/25] Power: Add proper suspender
 
 Change-Id: I7bf3efc6ac97e4c106c3cc2815fbb773cda5d57e
 ---

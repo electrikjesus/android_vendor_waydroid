@@ -1,7 +1,7 @@
 From 53a4d47307086691bb98a7655ee44cffae22b4af Mon Sep 17 00:00:00 2001
 From: Madhushan Nishantha <jlmadushan@gmail.com>
 Date: Wed, 20 Oct 2021 19:46:11 +0200
-Subject: [PATCH 3/6] disable app dir isolation using selinux
+Subject: [PATCH 03/25] disable app dir isolation using selinux
 
 Change-Id: Ifc0495a4795ab64f646abd4987819fa367b304f4
 ---

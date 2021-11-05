@@ -1,7 +1,7 @@
 From 698652bbbe3812adfd10756d5041703b0e5135ab Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Fri, 27 Aug 2021 22:54:26 +0800
-Subject: [PATCH 06/12] native: Address host uid services as system UID
+Subject: [PATCH 06/13] native: Address host uid services as system UID
 
 Change-Id: If534b9a36f40f15390f5b5a6ca726ebf267406c1
 ---

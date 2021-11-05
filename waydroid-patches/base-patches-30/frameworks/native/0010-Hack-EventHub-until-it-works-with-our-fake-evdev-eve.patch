@@ -1,7 +1,7 @@
 From 139a400179ff9e8e2e56a698bd6c8b220afb87c9 Mon Sep 17 00:00:00 2001
 From: Tomeu Vizoso <tomeu.vizoso@collabora.com>
 Date: Wed, 24 Oct 2018 08:23:52 +0200
-Subject: [PATCH 10/12] Hack EventHub until it works with our fake evdev events
+Subject: [PATCH 10/13] Hack EventHub until it works with our fake evdev events
 
 ---
  services/inputflinger/reader/EventHub.cpp | 95 +++++++++++++++++++++--

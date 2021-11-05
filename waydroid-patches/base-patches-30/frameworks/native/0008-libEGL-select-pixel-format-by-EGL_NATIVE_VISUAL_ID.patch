@@ -1,7 +1,7 @@
 From 765603f8d75080915d3fe9b74bbf0a3b8a3cc313 Mon Sep 17 00:00:00 2001
 From: Chih-Wei Huang <cwhuang@linux.org.tw>
 Date: Mon, 4 Sep 2017 19:26:33 +0800
-Subject: [PATCH 08/12] libEGL: select pixel format by EGL_NATIVE_VISUAL_ID
+Subject: [PATCH 08/13] libEGL: select pixel format by EGL_NATIVE_VISUAL_ID
 
 We need this workaround until Mesa supports HAL_PIXEL_FORMAT_RGBA_8888.
 ---

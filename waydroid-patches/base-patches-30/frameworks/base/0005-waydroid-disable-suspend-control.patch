@@ -1,7 +1,7 @@
 From f526b814e1c9ecdf78a1aa5e578ae883d3f929df Mon Sep 17 00:00:00 2001
 From: Asriel Dreemurr <asriel.danctnix@gmail.com>
 Date: Sun, 15 Nov 2020 00:24:46 +0700
-Subject: [PATCH 5/6] (waydroid) disable suspend control
+Subject: [PATCH 05/25] (waydroid) disable suspend control
 
 Change-Id: I1c8cbb5980efc063fae25597b3c6e927a682c1ca
 ---

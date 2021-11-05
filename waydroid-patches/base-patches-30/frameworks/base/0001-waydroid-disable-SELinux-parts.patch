@@ -1,7 +1,7 @@
 From 3e20a7e531b233aacf477cf60a5965c5f7fe1251 Mon Sep 17 00:00:00 2001
 From: Asriel Dreemurr <asriel.danctnix@gmail.com>
 Date: Sun, 15 Nov 2020 00:24:05 +0700
-Subject: [PATCH 1/6] (waydroid) disable SELinux parts
+Subject: [PATCH 01/25] (waydroid) disable SELinux parts
 
 Change-Id: I1bee5fb7f9f879e3bc9dc0c69cfb004fde8a320a
 ---

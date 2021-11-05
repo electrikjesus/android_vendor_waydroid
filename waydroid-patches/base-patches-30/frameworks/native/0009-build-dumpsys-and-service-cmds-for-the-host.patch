@@ -1,7 +1,7 @@
 From b893457cbb6e4d62b8ea65f3a4bf82dff41dd79d Mon Sep 17 00:00:00 2001
 From: Madhushan Nishantha <jlmadushan@gmail.com>
 Date: Tue, 26 Oct 2021 09:39:45 +0200
-Subject: [PATCH 09/12] build dumpsys and service cmds for the host
+Subject: [PATCH 09/13] build dumpsys and service cmds for the host
 
 Change-Id: I0439b831f7089d99672c9056fa7ac50273957203
 ---

@@ -1,7 +1,7 @@
 From bdcbaec97611a119e97a733b63faa2555b51121c Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Fri, 4 Jun 2021 16:27:09 +0430
-Subject: [PATCH 11/12] EventHub: Add wayland inputs support
+Subject: [PATCH 11/13] EventHub: Add wayland inputs support
 
 ---
  services/inputflinger/reader/EventHub.cpp | 117 +++++++++++++++-------

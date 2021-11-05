@@ -1,7 +1,7 @@
 From d07c994242c9a55cbb3b80b2cc6893475f67722a Mon Sep 17 00:00:00 2001
 From: TheKit <nekit1000@gmail.com>
 Date: Sun, 7 Mar 2021 17:15:20 +0200
-Subject: [PATCH 03/12] (halium) never set FLAT_BINDER_FLAG_TXN_SECURITY_CTX
+Subject: [PATCH 03/13] (halium) never set FLAT_BINDER_FLAG_TXN_SECURITY_CTX
  flag
 
 It breaks binder transactions when run on a kernel without

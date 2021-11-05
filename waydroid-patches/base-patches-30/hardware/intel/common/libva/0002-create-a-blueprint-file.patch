@@ -1,0 +1,174 @@
+From 514d236a4d8aea1c87ae1b62349206f752b4b30a Mon Sep 17 00:00:00 2001
+From: Madhushan Nishantha <jlmadushan@gmail.com>
+Date: Sat, 30 Oct 2021 14:39:32 +0200
+Subject: [PATCH 2/2] create a blueprint file
+
+---
+ Android.bp                        | 130 ++++++++++++++++++++++++++++++
+ Android.mk => Android.mk.back     |   0
+ va/{Android.mk => Android.mk.bak} |   0
+ va/va.c                           |   1 +
+ 4 files changed, 131 insertions(+)
+ create mode 100644 Android.bp
+ rename Android.mk => Android.mk.back (100%)
+ rename va/{Android.mk => Android.mk.bak} (100%)
+
+diff --git a/Android.bp b/Android.bp
+new file mode 100644
+index 00000000..7953c5ba
+--- /dev/null
++++ b/Android.bp
+@@ -0,0 +1,130 @@
++// Copyright (c) 2007 Intel Corporation. All Rights Reserved.
++//
++// Permission is hereby granted, free of charge, to any person obtaining a
++// copy of this software and associated documentation files (the
++// "Software"), to deal in the Software without restriction, including
++// without limitation the rights to use, copy, modify, merge, publish,
++// distribute, sub license, and/or sell copies of the Software, and to
++// permit persons to whom the Software is furnished to do so, subject to
++// the following conditions:
++//
++// The above copyright notice and this permission notice (including the
++// next paragraph) shall be included in all copies or substantial portions
++// of the Software.
++//
++// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
++// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
++// IN NO EVENT SHALL PRECISION INSIGHT AND/OR ITS SUPPLIERS BE LIABLE FOR
++// ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
++// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
++// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
++
++// For libva
++// =====================================================
++
++//genrule {
++//    name: "libva_version",
++//    out: ["va/va_version.h"],
++//    cmd: "sh $(location build/gen_version.sh) $(out)",
++//    tools: ["build/gen_version.sh"]
++//
++//}
++
++cc_library {
++    name: "libva",
++    vendor_available: true,
++
++    srcs: [
++        "va/va.c",
++        "va/va_trace.c",
++        "va/va_fool.c",
++        "va/va_str.c",
++    ],
++
++    multilib: {
++        lib32: {
++            cflags: [
++                "-DVA_DRIVERS_PATH=\"/vendor/lib/dri\""
++            ],
++        },
++
++        lib64: {
++            cflags: [
++                "-DVA_DRIVERS_PATH=\"/vendor/lib64/dri\""
++            ],
++        },
++    },
++
++    cflags: [
++        "-DENABLE_VA_MESSAGING",
++        "-DLOG_TAG=\"libva\"",
++        "-Wno-sign-compare",
++        "-Wno-missing-field-initializers",
++        "-Wno-unused-parameter",
++    ],
++
++    shared_libs: [
++        "libdl",
++        "libdrm",
++        "libcutils",
++        "liblog",
++    ],
++
++    local_include_dirs: ["."],
++    //generated_headers: ["libva_version"],
++
++    export_include_dirs: [
++        ".",
++        "va",
++    ],
++
++   //export_generated_headers: [
++   //    "libva_version",
++   //],
++
++    // ANDROIDMK TRANSLATION ERROR: unsupported target assignment
++    // $(GEN): SCRIPT := $(LOCAL_PATH)/../build/gen_version.sh
++
++    // ANDROIDMK TRANSLATION ERROR: unsupported target assignment
++    // $(GEN): PRIVATE_CUSTOM_TOOL = sh $(SCRIPT) $(<D)/.. $(<) > $(@)
++
++    // ANDROIDMK TRANSLATION ERROR: unsupported line
++    // rule:       $(GEN): $(intermediates)/va/%.h  $(LOCAL_PATH)/%.h.in $(LOCAL_PATH)/../configure.ac
++    //
++    // $(transform-generated-source)
++    //
++
++    // ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_GENERATED_SOURCES
++    // LOCAL_GENERATED_SOURCES += $(GEN)
++
++}
++
++// For libva-android
++// =====================================================
++
++cc_library {
++    name: "libva-android",
++    vendor_available: true,
++
++    srcs: [
++        "va/android/va_android.cpp",
++        "va/drm/va_drm_utils.c",
++    ],
++
++    cflags: [
++        "-DLOG_TAG=\"libva-android\"",
++        "-Wno-sign-compare",
++        "-Wno-missing-field-initializers",
++        "-Wno-unused-parameter",
++    ],
++
++    local_include_dirs: ["va/drm"],
++
++    shared_libs: [
++        "libva",
++        "libdrm",
++        "liblog",
++    ],
++
++}
+diff --git a/Android.mk b/Android.mk.back
+similarity index 100%
+rename from Android.mk
+rename to Android.mk.back
+diff --git a/va/Android.mk b/va/Android.mk.bak
+similarity index 100%
+rename from va/Android.mk
+rename to va/Android.mk.bak
+diff --git a/va/va.c b/va/va.c
+index 71a59811..5cf2fabf 100644
+--- a/va/va.c
++++ b/va/va.c
+@@ -51,6 +51,7 @@
+ #endif
+ 
+ #define DRIVER_EXTENSION    "_drv_video.so"
++#define SYSCONFDIR "/etc"
+ 
+ #define ASSERT      assert
+ #define CHECK_VTABLE(s, ctx, func) if (!va_checkVtable(dpy, ctx->vtable->va##func, #func)) s = VA_STATUS_ERROR_UNIMPLEMENTED;
+-- 
+2.30.2
+

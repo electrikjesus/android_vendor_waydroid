@@ -1,7 +1,7 @@
 From 5efc6f7d1ce249fb03b16cb99b7a9f105cc6b880 Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Thu, 17 Jun 2021 01:39:59 +0800
-Subject: [PATCH 2/6] Zygote: Disable seccomp
+Subject: [PATCH 02/25] Zygote: Disable seccomp
 
 Change-Id: Ia29148f887a6fdcbc65803a4dec1a881b353df95
 ---

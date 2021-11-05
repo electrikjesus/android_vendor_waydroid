@@ -1,7 +1,7 @@
 From a53c0d17c352d24e32b2a1685364d24c37493abe Mon Sep 17 00:00:00 2001
 From: Madhushan Nishantha <jlmadushan@gmail.com>
 Date: Fri, 22 Oct 2021 12:48:23 +0200
-Subject: [PATCH 2/2] changes to make it run
+Subject: [PATCH 2/3] changes to make it run
 
 ---
  BoardConfig.mk | 4 +++-

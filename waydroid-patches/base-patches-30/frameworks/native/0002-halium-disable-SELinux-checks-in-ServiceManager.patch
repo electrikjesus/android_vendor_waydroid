@@ -1,7 +1,7 @@
 From d1be5074ebf37ebe45c99022e53cc57b36e290b3 Mon Sep 17 00:00:00 2001
 From: TheKit <nekit1000@gmail.com>
 Date: Sun, 7 Mar 2021 17:13:31 +0200
-Subject: [PATCH 02/12] (halium) disable SELinux checks in ServiceManager
+Subject: [PATCH 02/13] (halium) disable SELinux checks in ServiceManager
 
 Change-Id: Ida8e91453db58b1123468931c94d4a40d273b0b3
 ---

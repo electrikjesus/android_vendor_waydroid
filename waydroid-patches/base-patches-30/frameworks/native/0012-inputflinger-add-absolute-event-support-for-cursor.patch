@@ -1,7 +1,7 @@
 From d028dff272ab0b42d3e7a5bf5a3f13eed9807661 Mon Sep 17 00:00:00 2001
 From: Simon Fels <morphis@gravedo.de>
 Date: Mon, 22 Aug 2016 21:59:22 +0200
-Subject: [PATCH 12/12] inputflinger: add absolute event support for cursor
+Subject: [PATCH 12/13] inputflinger: add absolute event support for cursor
 
 Don't log event codes for cursor position changes
 
