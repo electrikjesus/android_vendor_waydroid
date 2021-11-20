@@ -28,5 +28,7 @@
   <project path="vendor/prebuilts/bdapps" name="boringdroid/vendor_prebuilts_bdapps" remote="ghub" revision="refs/heads/boringdroid-10.0.0" />
 
 <!--   <project path="vendor/halium/libhybris" name="Halium/libhybris" revision="halium-11.0" remote="ghub" /> -->
+  <!-- Add FOSS apps vendor -->
+  <project path="vendor/foss" name="BlissRoms-x86/vendor_foss" revision="foss-minimal" remote="ghub" />
 
 </manifest>

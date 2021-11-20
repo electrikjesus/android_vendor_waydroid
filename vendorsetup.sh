@@ -10,3 +10,8 @@ function waydroid-generate-manifest
 {
     ${vendor_path}/manifest_scripts/generate-manifest.sh
 }
+
+function update-foss
+{
+    vendor/foss/update.sh
+}
