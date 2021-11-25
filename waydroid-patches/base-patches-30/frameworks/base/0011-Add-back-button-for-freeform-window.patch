@@ -1,7 +1,7 @@
-From 3d517ad10b25e37cd51e8b48a1aa2dd20ece0346 Mon Sep 17 00:00:00 2001
+From 8fae85ac26a6c2f937790d966721649752bf973b Mon Sep 17 00:00:00 2001
 From: utzcoz <utzcoz@outlook.com>
 Date: Thu, 11 Jun 2020 20:16:55 +0800
-Subject: [PATCH 11/25] Add back button for freeform window
+Subject: [PATCH 11/24] Add back button for freeform window
 
 Signed-off-by: utzcoz <utzcoz@outlook.com>
 Change-Id: Ic847315ef5fb606cacde03f30ad0ec41730d36b7
@@ -10,20 +10,54 @@ Conflicts:
 	config/hiddenapi-private-dex.txt
 	core/java/com/android/internal/widget/DecorCaptionView.java
 ---
+ core/java/android/app/Activity.java           |  7 +++-
+ core/java/android/view/Window.java            |  3 ++
  .../android/internal/policy/DecorView.java    | 12 ++++++-
- .../internal/widget/DecorCaptionView.java     | 35 ++++++++++++++++++-
- .../res/drawable/decor_back_button_dark.xml   | 34 ++++++++++++++++++
- .../res/drawable/decor_back_button_light.xml  | 31 ++++++++++++++++
+ .../internal/widget/DecorCaptionView.java     | 34 ++++++++++++++++++-
+ .../res/drawable/decor_back_button_dark.xml   | 34 +++++++++++++++++++
+ .../res/drawable/decor_back_button_light.xml  | 31 +++++++++++++++++
  core/res/res/layout/decor_caption.xml         | 16 +++++++++
  core/res/res/values/arrays.xml                |  4 +++
  core/res/res/values/strings.xml               |  3 ++
  core/res/res/values/symbols.xml               |  5 +++
- 8 files changed, 138 insertions(+), 2 deletions(-)
+ 10 files changed, 146 insertions(+), 3 deletions(-)
  create mode 100644 core/res/res/drawable/decor_back_button_dark.xml
  create mode 100644 core/res/res/drawable/decor_back_button_light.xml
 
+diff --git a/core/java/android/app/Activity.java b/core/java/android/app/Activity.java
+index c976a9bfb30..1bc2c8b22ec 100644
+--- a/core/java/android/app/Activity.java
++++ b/core/java/android/app/Activity.java
+@@ -1005,7 +1005,12 @@ public class Activity extends ContextThemeWrapper
+             mTaskDescription.setNavigationBarColor(color);
+             setTaskDescription(mTaskDescription);
+         }
+-
++        // region @boringdroid
++        // @Override
++        public void onBackPressed() {
++            Activity.this.onBackPressed();
++        }
++        // endregion
+     };
+ 
+     private static native String getDlWarning();
+diff --git a/core/java/android/view/Window.java b/core/java/android/view/Window.java
+index c7df1fbb99f..eeb82748d83 100644
+--- a/core/java/android/view/Window.java
++++ b/core/java/android/view/Window.java
+@@ -646,6 +646,9 @@ public abstract class Window {
+ 
+ 
+         boolean moveTaskToBack(boolean nonRoot);
++        // region @boringdroid
++        default void onBackPressed() {};
++        // endregion
+ 
+         /**
+          * Update the status bar color to a forced one.
 diff --git a/core/java/com/android/internal/policy/DecorView.java b/core/java/com/android/internal/policy/DecorView.java
-index 5d1833a7..76aa232b 100644
+index 5d1833a717e..76aa232bb41 100644
 --- a/core/java/com/android/internal/policy/DecorView.java
 +++ b/core/java/com/android/internal/policy/DecorView.java
 @@ -2209,7 +2209,12 @@ public class DecorView extends FrameLayout implements RootViewSurfaceTaker, Wind
@@ -53,7 +87,7 @@ index 5d1833a7..76aa232b 100644
                  R.drawable.decor_pip_button_dark);
  		view.findViewById(R.id.minimize_window).setBackgroundResource(
 diff --git a/core/java/com/android/internal/widget/DecorCaptionView.java b/core/java/com/android/internal/widget/DecorCaptionView.java
-index 7ec93ff6..b49bb3e4 100644
+index 7ec93ff6c98..f11ec913a2e 100644
 --- a/core/java/com/android/internal/widget/DecorCaptionView.java
 +++ b/core/java/com/android/internal/widget/DecorCaptionView.java
 @@ -16,6 +16,7 @@
@@ -130,16 +164,15 @@ index 7ec93ff6..b49bb3e4 100644
      }
  
      /**
-@@ -417,6 +440,16 @@ public class DecorCaptionView extends ViewGroup implements View.OnTouchListener,
+@@ -417,6 +440,15 @@ public class DecorCaptionView extends ViewGroup implements View.OnTouchListener,
  
      @Override
      public boolean onSingleTapUp(MotionEvent e) {
 +        // region @boringdroid
 +        if (mClickTarget == mBack) {
 +            Window.WindowControllerCallback callback = mOwner.getWindowControllerCallback();
-+            if (callback instanceof Activity) {
-+                Activity activity = (Activity) callback;
-+                activity.onBackPressed();
++            if (callback != null) {
++                callback.onBackPressed();
 +            }
 +            return true;
 +        }
@@ -149,7 +182,7 @@ index 7ec93ff6..b49bb3e4 100644
          } else if (mClickTarget == mPip) {
 diff --git a/core/res/res/drawable/decor_back_button_dark.xml b/core/res/res/drawable/decor_back_button_dark.xml
 new file mode 100644
-index 00000000..ec0f6a92
+index 00000000000..ec0f6a92d23
 --- /dev/null
 +++ b/core/res/res/drawable/decor_back_button_dark.xml
 @@ -0,0 +1,34 @@
@@ -189,7 +222,7 @@ index 00000000..ec0f6a92
 +
 diff --git a/core/res/res/drawable/decor_back_button_light.xml b/core/res/res/drawable/decor_back_button_light.xml
 new file mode 100644
-index 00000000..7b9344a0
+index 00000000000..7b9344a0dce
 --- /dev/null
 +++ b/core/res/res/drawable/decor_back_button_light.xml
 @@ -0,0 +1,31 @@
@@ -225,7 +258,7 @@ index 00000000..7b9344a0
 +    </group>
 +</vector>
 diff --git a/core/res/res/layout/decor_caption.xml b/core/res/res/layout/decor_caption.xml
-index 55edbfcf..534d27d8 100644
+index 55edbfcfbb9..534d27d825e 100644
 --- a/core/res/res/layout/decor_caption.xml
 +++ b/core/res/res/layout/decor_caption.xml
 @@ -30,6 +30,22 @@
@@ -252,7 +285,7 @@ index 55edbfcf..534d27d8 100644
                  android:id="@+id/pip_window"
                  android:layout_width="32dp"
 diff --git a/core/res/res/values/arrays.xml b/core/res/res/values/arrays.xml
-index 168ca791..633e928e 100644
+index 168ca7917c6..633e928ed2a 100644
 --- a/core/res/res/values/arrays.xml
 +++ b/core/res/res/values/arrays.xml
 @@ -143,6 +143,10 @@
@@ -267,7 +300,7 @@ index 168ca791..633e928e 100644
  
      <!-- Used in LocalePicker -->
 diff --git a/core/res/res/values/strings.xml b/core/res/res/values/strings.xml
-index cb7c072a..3d0c18e1 100644
+index cb7c072a880..3d0c18e1e21 100644
 --- a/core/res/res/values/strings.xml
 +++ b/core/res/res/values/strings.xml
 @@ -4981,6 +4981,9 @@
@@ -281,7 +314,7 @@ index cb7c072a..3d0c18e1 100644
      <string name="pip_button_text">Picture In Picture</string>
      <!-- Accessibility text for the minimize window button -->
 diff --git a/core/res/res/values/symbols.xml b/core/res/res/values/symbols.xml
-index 46d5ea7b..c947fd7a 100644
+index 46d5ea7b097..c947fd7a6bb 100644
 --- a/core/res/res/values/symbols.xml
 +++ b/core/res/res/values/symbols.xml
 @@ -2280,6 +2280,11 @@
@@ -297,5 +330,5 @@ index 46d5ea7b..c947fd7a 100644
    <java-symbol type="color" name="decor_button_light_color" />
    <java-symbol type="array" name="unloggable_phone_numbers" />
 -- 
-2.30.2
+2.25.1
 

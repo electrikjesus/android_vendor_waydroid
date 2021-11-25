@@ -1,7 +1,7 @@
-From 873fd397004347f9c9477f439fc174bdcb0e4485 Mon Sep 17 00:00:00 2001
+From 7f65099876ebefa6ea1f51b36702fd66bd73e73f Mon Sep 17 00:00:00 2001
 From: Jon West <electrikjesus@gmail.com>
 Date: Tue, 1 Sep 2020 19:06:42 -0400
-Subject: [PATCH 15/25] Allow boringdroid to use ROM's navbar button placement
+Subject: [PATCH 15/24] Allow boringdroid to use ROM's navbar button placement
 
 Change-Id: I22b6bdbfaaee956bce3a9a0ac65cae89f3a803ca
 ---
@@ -9,7 +9,7 @@ Change-Id: I22b6bdbfaaee956bce3a9a0ac65cae89f3a803ca
  1 file changed, 4 deletions(-)
 
 diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarInflaterView.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarInflaterView.java
-index eeb4b98e..8cf602c7 100644
+index eeb4b98ea3e..8cf602c77ab 100644
 --- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarInflaterView.java
 +++ b/packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarInflaterView.java
 @@ -500,10 +500,6 @@ public class NavigationBarInflaterView extends FrameLayout
@@ -24,5 +24,5 @@ index eeb4b98e..8cf602c7 100644
              v.setPadding(0, v.getPaddingTop(), 0, v.getPaddingBottom());
          }
 -- 
-2.30.2
+2.25.1
 

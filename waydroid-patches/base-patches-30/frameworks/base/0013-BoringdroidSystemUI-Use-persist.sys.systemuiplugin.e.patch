@@ -1,7 +1,7 @@
-From 389ee210726a8a70e584a0c3b3c5dcc662dfc115 Mon Sep 17 00:00:00 2001
+From 7fc4c94952b7d1641770b6fe44d33a9af43c1355 Mon Sep 17 00:00:00 2001
 From: utzcoz <utzcoz@outlook.com>
 Date: Fri, 24 Jul 2020 15:27:32 +0800
-Subject: [PATCH 13/25] BoringdroidSystemUI: Use
+Subject: [PATCH 13/24] BoringdroidSystemUI: Use
  persist.sys.systemuiplugin.enabled to control plugin and nav bar style
 
 Change-Id: I1d88309b355d99c5aa75f3b6ad3c73e9d39ffdc3
@@ -19,7 +19,7 @@ Conflicts:
  create mode 100644 packages/SystemUI/src/com/android/systemui/BoringdroidConfig.java
 
 diff --git a/packages/SystemUI/res/values/config.xml b/packages/SystemUI/res/values/config.xml
-index 367fe72d..9a8e4b3e 100644
+index 367fe72d4da..9a8e4b3e52a 100644
 --- a/packages/SystemUI/res/values/config.xml
 +++ b/packages/SystemUI/res/values/config.xml
 @@ -345,6 +345,9 @@
@@ -33,7 +33,7 @@ index 367fe72d..9a8e4b3e 100644
      <bool name="quick_settings_show_full_alarm">false</bool>
  
 diff --git a/packages/SystemUI/res/values/dimens.xml b/packages/SystemUI/res/values/dimens.xml
-index e414861b..cd8d923c 100644
+index e414861b0cd..cd8d923cc54 100644
 --- a/packages/SystemUI/res/values/dimens.xml
 +++ b/packages/SystemUI/res/values/dimens.xml
 @@ -348,7 +348,9 @@
@@ -48,7 +48,7 @@ index e414861b..cd8d923c 100644
      <dimen name="navigation_extra_key_width">36dp</dimen>
  
 diff --git a/packages/SystemUI/shared/src/com/android/systemui/shared/plugins/PluginManagerImpl.java b/packages/SystemUI/shared/src/com/android/systemui/shared/plugins/PluginManagerImpl.java
-index a687bb89..1ee8ec0f 100644
+index a687bb89fd7..1ee8ec0f532 100644
 --- a/packages/SystemUI/shared/src/com/android/systemui/shared/plugins/PluginManagerImpl.java
 +++ b/packages/SystemUI/shared/src/com/android/systemui/shared/plugins/PluginManagerImpl.java
 @@ -93,7 +93,11 @@ public class PluginManagerImpl extends BroadcastReceiver implements PluginManage
@@ -66,7 +66,7 @@ index a687bb89..1ee8ec0f 100644
          mPluginEnabler = initializer.getPluginEnabler(mContext);
 diff --git a/packages/SystemUI/src/com/android/systemui/BoringdroidConfig.java b/packages/SystemUI/src/com/android/systemui/BoringdroidConfig.java
 new file mode 100644
-index 00000000..d4aff777
+index 00000000000..d4aff777d93
 --- /dev/null
 +++ b/packages/SystemUI/src/com/android/systemui/BoringdroidConfig.java
 @@ -0,0 +1,24 @@
@@ -96,7 +96,7 @@ index 00000000..d4aff777
 +}
 \ No newline at end of file
 diff --git a/packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarInflaterView.java b/packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarInflaterView.java
-index 047cb702..eeb4b98e 100644
+index 047cb702c55..eeb4b98ea3e 100644
 --- a/packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarInflaterView.java
 +++ b/packages/SystemUI/src/com/android/systemui/statusbar/phone/NavigationBarInflaterView.java
 @@ -38,6 +38,7 @@ import android.widget.LinearLayout;
@@ -141,5 +141,5 @@ index 047cb702..eeb4b98e 100644
      }
  
 -- 
-2.30.2
+2.25.1
 

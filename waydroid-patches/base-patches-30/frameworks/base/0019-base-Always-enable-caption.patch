@@ -1,7 +1,7 @@
-From d08af74eb68a72407c3472785a7be79e9ad0c59c Mon Sep 17 00:00:00 2001
+From f6a5a224180cb8a0578c805bd9224e5546f96d2a Mon Sep 17 00:00:00 2001
 From: Erfan Abdi <erfangplus@gmail.com>
 Date: Fri, 10 Sep 2021 19:05:06 +0800
-Subject: [PATCH 20/25] base: Always enable caption
+Subject: [PATCH 19/24] base: Always enable caption
 
 Change-Id: I286146ebe9ed3557aecbb508cc846c82614ea5d6
 ---
@@ -11,7 +11,7 @@ Change-Id: I286146ebe9ed3557aecbb508cc846c82614ea5d6
  3 files changed, 30 insertions(+)
 
 diff --git a/core/java/android/app/WindowConfiguration.java b/core/java/android/app/WindowConfiguration.java
-index a486b950..050aa93d 100644
+index a486b9501e0..050aa93d75e 100644
 --- a/core/java/android/app/WindowConfiguration.java
 +++ b/core/java/android/app/WindowConfiguration.java
 @@ -31,6 +31,7 @@ import android.content.res.Configuration;
@@ -36,7 +36,7 @@ index a486b950..050aa93d 100644
                  || mDisplayWindowingMode == WINDOWING_MODE_FREEFORM);
      }
 diff --git a/services/core/java/com/android/server/am/ActivityManagerService.java b/services/core/java/com/android/server/am/ActivityManagerService.java
-index 0ae9cc27..ff361040 100644
+index 0ae9cc279e6..ff361040e07 100644
 --- a/services/core/java/com/android/server/am/ActivityManagerService.java
 +++ b/services/core/java/com/android/server/am/ActivityManagerService.java
 @@ -32,6 +32,10 @@ import static android.app.ActivityManager.PROCESS_STATE_TOP;
@@ -81,7 +81,7 @@ index 0ae9cc27..ff361040 100644
                      callingFeatureId, intent, resolvedType, resultTo, resultWho, requestCode,
                      startFlags, profilerInfo, bOptions, userId);
 diff --git a/services/core/java/com/android/server/wm/ActivityStack.java b/services/core/java/com/android/server/wm/ActivityStack.java
-index 2899993b..be365819 100644
+index 2899993bfd2..be365819a0b 100644
 --- a/services/core/java/com/android/server/wm/ActivityStack.java
 +++ b/services/core/java/com/android/server/wm/ActivityStack.java
 @@ -771,6 +771,9 @@ class ActivityStack extends Task {
@@ -95,5 +95,5 @@ index 2899993b..be365819 100644
                  resize(mTmpRect2, false /*preserveWindows*/, true /*deferResume*/);
              }
 -- 
-2.30.2
+2.25.1
 

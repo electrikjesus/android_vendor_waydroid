@@ -1,36 +1,23 @@
-From 5ea800ee69aafcf59ef7c47d20c065ffd4d5faa0 Mon Sep 17 00:00:00 2001
+From 46e044c3c78149661f86d93044d574a898f38eff Mon Sep 17 00:00:00 2001
 From: Madhushan Nishantha <jlmadushan@gmail.com>
 Date: Fri, 5 Nov 2021 11:09:37 +0100
-Subject: [PATCH 25/25] some changes to make the code compile
+Subject: [PATCH 24/24] some changes to make the code compile
 
 Change-Id: Ic25204b87b20498bad735f07a2d8a476c7131d79
+
+Conflicts:
+	core/java/android/app/Activity.java
 ---
- core/java/android/app/Activity.java                 |  4 ++++
  .../java/com/android/internal/policy/DecorView.java | 13 +++++--------
  .../java/com/android/server/wm/ActivityStack.java   |  7 ++++---
  .../com/android/server/wm/RootWindowContainer.java  |  1 +
- 4 files changed, 14 insertions(+), 11 deletions(-)
+ 3 files changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/core/java/android/app/Activity.java b/core/java/android/app/Activity.java
-index a768e3d6..75f24ef0 100644
---- a/core/java/android/app/Activity.java
-+++ b/core/java/android/app/Activity.java
-@@ -1006,6 +1006,10 @@ public class Activity extends ContextThemeWrapper
-             setTaskDescription(mTaskDescription);
-         }
- 
-+        @Override
-+        public boolean moveTaskToBack(boolean nonRoot) {
-+            return moveTaskToBack(nonRoot);
-+        }
-     };
- 
-     private static native String getDlWarning();
 diff --git a/core/java/com/android/internal/policy/DecorView.java b/core/java/com/android/internal/policy/DecorView.java
-index 10407152..bd415a5d 100644
+index b8f7a69bc32..c262053623a 100644
 --- a/core/java/com/android/internal/policy/DecorView.java
 +++ b/core/java/com/android/internal/policy/DecorView.java
-@@ -404,18 +404,15 @@ public class DecorView extends FrameLayout implements RootViewSurfaceTaker, Wind
+@@ -392,18 +392,15 @@ public class DecorView extends FrameLayout implements RootViewSurfaceTaker, Wind
              // region @waydroid
              if (keyCode == KeyEvent.KEYCODE_F11 && isDown) {
                  Window.WindowControllerCallback callback = mWindow.getWindowControllerCallback();
@@ -55,7 +42,7 @@ index 10407152..bd415a5d 100644
                      }
                      return true;
 diff --git a/services/core/java/com/android/server/wm/ActivityStack.java b/services/core/java/com/android/server/wm/ActivityStack.java
-index be365819..e0f250a0 100644
+index be365819a0b..e0f250a0496 100644
 --- a/services/core/java/com/android/server/wm/ActivityStack.java
 +++ b/services/core/java/com/android/server/wm/ActivityStack.java
 @@ -24,6 +24,7 @@ import static android.app.WindowConfiguration.WINDOWING_MODE_FULLSCREEN;
@@ -94,7 +81,7 @@ index be365819..e0f250a0 100644
          final boolean allowMoveToFront = options == null || !options.getAvoidMoveToFront();
          final boolean isOrhasTask = rTask == this || hasChild(rTask);
 diff --git a/services/core/java/com/android/server/wm/RootWindowContainer.java b/services/core/java/com/android/server/wm/RootWindowContainer.java
-index 24c695a4..3bffa004 100644
+index 24c695a44c9..3bffa00407f 100644
 --- a/services/core/java/com/android/server/wm/RootWindowContainer.java
 +++ b/services/core/java/com/android/server/wm/RootWindowContainer.java
 @@ -28,6 +28,7 @@ import static android.app.WindowConfiguration.WINDOWING_MODE_FULLSCREEN_OR_SPLIT
@@ -106,5 +93,5 @@ index 24c695a4..3bffa004 100644
  import static android.content.pm.ActivityInfo.LAUNCH_SINGLE_INSTANCE;
  import static android.content.pm.ActivityInfo.LAUNCH_SINGLE_TASK;
 -- 
-2.30.2
+2.25.1
 

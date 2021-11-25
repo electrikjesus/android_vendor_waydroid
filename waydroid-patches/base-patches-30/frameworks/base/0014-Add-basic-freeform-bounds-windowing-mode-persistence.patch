@@ -1,7 +1,7 @@
-From 174a8468155601505b8b594d28f6ece4cab68c81 Mon Sep 17 00:00:00 2001
+From ea930e8e25237a2dd1368d489ac8af4d0a89a07d Mon Sep 17 00:00:00 2001
 From: utzcoz <utzcoz@outlook.com>
 Date: Tue, 28 Jul 2020 23:05:24 +0800
-Subject: [PATCH 14/25] Add basic freeform bounds/windowing mode persistence
+Subject: [PATCH 14/24] Add basic freeform bounds/windowing mode persistence
 
 Signed-off-by: utzcoz <utzcoz@outlook.com>
 ---
@@ -13,7 +13,7 @@ Signed-off-by: utzcoz <utzcoz@outlook.com>
  5 files changed, 177 insertions(+)
 
 diff --git a/core/java/com/android/internal/policy/PhoneWindow.java b/core/java/com/android/internal/policy/PhoneWindow.java
-index d90a0225..f3d8aee1 100644
+index d90a0225608..f3d8aee178d 100644
 --- a/core/java/com/android/internal/policy/PhoneWindow.java
 +++ b/core/java/com/android/internal/policy/PhoneWindow.java
 @@ -60,6 +60,7 @@ import android.os.Parcel;
@@ -35,7 +35,7 @@ index d90a0225..f3d8aee1 100644
                  PackageManager.FEATURE_PICTURE_IN_PICTURE);
          mActivityConfigCallback = activityConfigCallback;
 diff --git a/services/core/java/com/android/server/wm/ActivityStack.java b/services/core/java/com/android/server/wm/ActivityStack.java
-index 6d452c39..2899993b 100644
+index 6d452c39ecc..2899993bfd2 100644
 --- a/services/core/java/com/android/server/wm/ActivityStack.java
 +++ b/services/core/java/com/android/server/wm/ActivityStack.java
 @@ -741,6 +741,12 @@ class ActivityStack extends Task {
@@ -67,7 +67,7 @@ index 6d452c39..2899993b 100644
          final boolean isOrhasTask = rTask == this || hasChild(rTask);
          // mLaunchTaskBehind tasks get placed at the back of the task stack.
 diff --git a/services/core/java/com/android/server/wm/ActivityStarter.java b/services/core/java/com/android/server/wm/ActivityStarter.java
-index 54ad4aca..4f07d2ec 100644
+index 54ad4acaca4..4f07d2ec8d0 100644
 --- a/services/core/java/com/android/server/wm/ActivityStarter.java
 +++ b/services/core/java/com/android/server/wm/ActivityStarter.java
 @@ -1592,6 +1592,19 @@ class ActivityStarter {
@@ -91,7 +91,7 @@ index 54ad4aca..4f07d2ec 100644
  
          computeSourceStack();
 diff --git a/services/core/java/com/android/server/wm/RootWindowContainer.java b/services/core/java/com/android/server/wm/RootWindowContainer.java
-index b1d774af..24c695a4 100644
+index b1d774af7f3..24c695a44c9 100644
 --- a/services/core/java/com/android/server/wm/RootWindowContainer.java
 +++ b/services/core/java/com/android/server/wm/RootWindowContainer.java
 @@ -3500,6 +3500,26 @@ class RootWindowContainer extends WindowContainer<DisplayContent>
@@ -122,7 +122,7 @@ index b1d774af..24c695a4 100644
              if (DEBUG_RECENTS) Slog.w(TAG_RECENTS,
                      "Couldn't restore task id=" + id + " found in recents");
 diff --git a/services/core/java/com/android/server/wm/WindowManagerService.java b/services/core/java/com/android/server/wm/WindowManagerService.java
-index 355a5314..2a21d7bd 100644
+index 355a531496f..2a21d7bd3a1 100644
 --- a/services/core/java/com/android/server/wm/WindowManagerService.java
 +++ b/services/core/java/com/android/server/wm/WindowManagerService.java
 @@ -146,6 +146,7 @@ import android.content.ContentResolver;
@@ -278,5 +278,5 @@ index 355a5314..2a21d7bd 100644
 +    // endregion
  }
 -- 
-2.30.2
+2.25.1
 

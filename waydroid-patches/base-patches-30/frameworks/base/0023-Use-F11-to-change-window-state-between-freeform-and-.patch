@@ -1,7 +1,7 @@
-From fe413fbde78d08d9f1b4660ab0d54c68eb1929cd Mon Sep 17 00:00:00 2001
+From 16b0fe5c5248e5547417315e0f40758c5d3509a9 Mon Sep 17 00:00:00 2001
 From: utzcoz <utzcoz@outlook.com>
 Date: Sun, 5 Apr 2020 22:24:00 +0800
-Subject: [PATCH 24/25] Use F11 to change window state between freeform and
+Subject: [PATCH 23/24] Use F11 to change window state between freeform and
  fullscreen
 
 Maybe we should add some rules to avoid to some windows to enter
@@ -17,7 +17,7 @@ Conflicts:
  1 file changed, 26 insertions(+)
 
 diff --git a/core/java/com/android/internal/policy/DecorView.java b/core/java/com/android/internal/policy/DecorView.java
-index 2a9320e9..10407152 100644
+index 83e71a3b888..b8f7a69bc32 100644
 --- a/core/java/com/android/internal/policy/DecorView.java
 +++ b/core/java/com/android/internal/policy/DecorView.java
 @@ -68,6 +68,7 @@ import android.graphics.drawable.ColorDrawable;
@@ -37,7 +37,7 @@ index 2a9320e9..10407152 100644
  
  import com.android.internal.R;
  import com.android.internal.policy.PhoneWindow.PanelFeatureState;
-@@ -398,6 +401,29 @@ public class DecorView extends FrameLayout implements RootViewSurfaceTaker, Wind
+@@ -386,6 +389,29 @@ public class DecorView extends FrameLayout implements RootViewSurfaceTaker, Wind
          }
  
          if (!mWindow.isDestroyed()) {
@@ -68,5 +68,5 @@ index 2a9320e9..10407152 100644
              final boolean handled = cb != null && mFeatureId < 0 ? cb.dispatchKeyEvent(event)
                      : super.dispatchKeyEvent(event);
 -- 
-2.30.2
+2.25.1
 
