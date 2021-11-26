@@ -1,7 +1,7 @@
-From c3496d8e5dd0c8f95de2f39f627fc4b39fd26658 Mon Sep 17 00:00:00 2001
+From 2975a9451db9e8ae4fd9bff2c520863742fbe461 Mon Sep 17 00:00:00 2001
 From: Madhushan Nishantha <jlmadushan@gmail.com>
 Date: Fri, 5 Nov 2021 11:15:40 +0100
-Subject: [PATCH 3/3] clerkey and iHD hardware video decoding
+Subject: [PATCH 2/8] clerkey and iHD hardware video decoding
 
 ---
  device.mk | 6 ++++--
@@ -31,5 +31,5 @@ index b8b044e..e14c274 100644
  # Gatekeeper
  PRODUCT_PACKAGES += \
 -- 
-2.30.2
+2.25.1
 
