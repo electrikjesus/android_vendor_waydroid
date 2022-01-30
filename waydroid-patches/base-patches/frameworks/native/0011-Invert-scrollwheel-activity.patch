@@ -1,0 +1,48 @@
+From 7a1fac3dd3d758ca94dbe619788d211cef6f90d5 Mon Sep 17 00:00:00 2001
+From: Jon West <electrikjesus@gmail.com>
+Date: Sat, 29 Jan 2022 14:49:20 -0500
+Subject: [PATCH] Invert scrollwheel activity
+
+Change-Id: I18038de43376e612a1bb364bbbb57c2833ddb779
+---
+ services/inputflinger/InputReader.cpp | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/services/inputflinger/InputReader.cpp b/services/inputflinger/InputReader.cpp
+index 9a5c3bbdd..95a95e864 100644
+--- a/services/inputflinger/InputReader.cpp
++++ b/services/inputflinger/InputReader.cpp
+@@ -2823,8 +2823,8 @@ void CursorInputMapper::sync(nsecs_t when) {
+     PointerCoords pointerCoords;
+     pointerCoords.clear();
+ 
+-    float vscroll = mCursorScrollAccumulator.getRelativeVWheel();
+-    float hscroll = mCursorScrollAccumulator.getRelativeHWheel();
++    float vscroll = mCursorScrollAccumulator.getRelativeVWheel()*-1;
++    float hscroll = mCursorScrollAccumulator.getRelativeHWheel()*-1;
+     bool scrolled = vscroll != 0 || hscroll != 0;
+ 
+     mWheelYVelocityControl.move(when, nullptr, &vscroll);
+@@ -3076,7 +3076,7 @@ void RotaryEncoderInputMapper::sync(nsecs_t when) {
+     pointerProperties.id = 0;
+     pointerProperties.toolType = AMOTION_EVENT_TOOL_TYPE_UNKNOWN;
+ 
+-    float scroll = mRotaryEncoderScrollAccumulator.getRelativeVWheel();
++    float scroll = mRotaryEncoderScrollAccumulator.getRelativeVWheel()*-1;
+     bool scrolled = scroll != 0;
+ 
+     // This is not a pointer, so it's not associated with a display.
+@@ -4400,8 +4400,8 @@ void TouchInputMapper::sync(nsecs_t when) {
+             | mCursorButtonAccumulator.getButtonState();
+ 
+     // Sync scroll
+-    next.rawVScroll = mCursorScrollAccumulator.getRelativeVWheel();
+-    next.rawHScroll = mCursorScrollAccumulator.getRelativeHWheel();
++    next.rawVScroll = mCursorScrollAccumulator.getRelativeVWheel()*-1;
++    next.rawHScroll = mCursorScrollAccumulator.getRelativeHWheel()*-1;
+     mCursorScrollAccumulator.finishSync();
+ 
+     // Sync touch
+-- 
+2.25.1
+
